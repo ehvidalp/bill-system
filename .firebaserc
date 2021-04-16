@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "hexagon-geometric": {
+      "hosting": {
+        "hexagon-bill": [
+          "hexagon-geometric"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "hexagon-geometric"
+  }
+}

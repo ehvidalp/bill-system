@@ -1,0 +1,93 @@
+<div class="pt-3">
+  <div class="d-flex mb-4 flex-row align-items-center border-bottom">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="26"
+      height="26"
+      fill="currentColor"
+      class="bi bi-file-earmark-text"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"
+      />
+      <path
+        d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"
+      />
+    </svg>
+    <h3 class="ml-2 title-font">Reporte</h3>
+  </div>
+
+  <form [formGroup]="reportForm!" class="row ml-4">
+    <div class="mt-5 search-nit">
+      <div class="form-input col-sm-10 col-md-6">
+        <input
+          formControlName="date"
+          type="month"
+          autocomplete="off"
+          class="form-control rounded-pill mt-1"
+          placeholder="Ingrese la fecha"
+          [class.is-invalid]="
+            reportFormControls!.date.invalid && reportFormControls!.date.touched
+          "
+        />
+        <div class="invalid-feedback text-left pl-2">
+          <span *ngIf="reportFormControls!.date.errors?.required"
+            >Campo requerido</span
+          >
+        </div>
+      </div>
+      <div class="col-2 form-input">
+        <button
+          type="button"
+          (click)="searchReport()"
+          class="btn btn-warning btn-search rounded-pill"
+        >
+          <span
+            class="spinner-grow spinner-grow-sm text-light"
+            *ngIf="loadingSearch"
+          ></span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            *ngIf="!loadingSearch"
+            width="20"
+            height="20"
+            fill="white"
+            class="bi bi-search"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </form>
+  <div
+    class="col-12 text-center font-weight-bold full-total"
+    *ngIf="totalReport"
+  >
+    Q {{ totalReport }}
+  </div>
+  <table class="table" *ngIf="totalReport">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nit</th>
+        <th scope="col">Empresa</th>
+        <th scope="col">No. de Facturas</th>
+        <th scope="col">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let provider of filterProvider; index as i">
+        <th>{{ i + 1 }}</th>
+        <td>{{ provider.nit }}</td>
+        <td>{{ provider.tradename }}</td>
+        <td>{{ provider.totalBills }}</td>
+        <td>{{ provider.sumTotal }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

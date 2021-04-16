@@ -1,0 +1,55 @@
+<div class="pt-3">
+  <div class="d-flex mb-4 flex-row align-items-center border-bottom">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+      <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+      <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+    </svg>
+    <h3 class="ml-2 title-font">Usuarios</h3>
+  </div>
+  <a routerLink="new" class="mt-5 ml-4 btn btn-warning text-white rounded-pill px-5">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-circle-fill mr-2" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+    </svg>
+    Agregar
+  </a>
+  <div class="mt-5 px-4 table-responsive">
+    <table [class.table-skeleton]="loadingData" [class.table]="!loadingData">
+      <thead [class.line-skeleton]="loadingData">
+        <tr>
+          <th  scope="col">Nombre</th>
+          <th  scope="col">Correo electrónico</th>
+          <th  scope="col">Rol</th>
+          <th  scope="col"></th>
+        </tr>
+      </thead>
+      <div *ngFor="let i of skeletonDiv">
+        <div [class.line-skeleton]="loadingData" [class.h-line-skeleton]="loadingData" ></div>
+      </div>
+      <tbody [class.line]="loadingData">
+        <tr *ngFor="let user of users" >
+          <td >{{user?.firstName}} {{user?.surname}}</td>
+          <td >{{user?.email}}</td>
+          <td >
+            <span *ngIf="user?.role">Administrador</span>
+            <span *ngIf="!user?.role">Usuario</span>
+          </td>
+          <td >
+            <a
+              [routerLink]="['edit', user?.id]" class="btn btn-info px-3 py-0 pb-1 rounded-pill">
+              <small>Editar</small>
+            </a>
+            <swal #swal >
+            </swal>
+            <button
+              (click)="deleteUser(user?.id)"
+              type="button"
+              class="btn btn-danger ml-3 px-2 py-0 pb-1 rounded-pill">
+              <small>Eliminar</small>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+img {
+  -webkit-animation: 5s rotate linear infinite;
+  animation: 5s rotate linear infinite;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+
+.content-login {
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: var(--bg-color);
+  background-repeat: repeat;
+}
+
+div.form-input {
+  height: 85px;
+}
+
+div.invalid-password {
+  margin-top: -0.4rem;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+button.btn-password {
+  margin-top: 0.5rem !important;
+  margin-left: 7rem !important;
+  border: 0px;
+  background: transparent;
+  z-index: 3;
+  outline: none;
+ }
+
+.error-message {
+  animation: fadeIn 0.7s ease-in both;
+}

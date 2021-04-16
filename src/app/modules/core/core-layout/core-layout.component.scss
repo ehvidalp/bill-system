@@ -1,0 +1,137 @@
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 48px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+img {
+  -webkit-animation: 5s rotate linear infinite;
+  animation: 5s rotate linear infinite;
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 5rem;
+  }
+  .navbar {
+    background-color: white !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+  }
+
+  .btn-logout {
+    margin: 0.5rem 0 !important;
+    margin-right: 0.5rem !important;
+  }
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+
+
+}
+
+/*
+ * Navbar
+ */
+
+.navbar {
+  background-color: transparent;
+}
+
+.navbar-brand {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1rem;
+  height: 4rem;
+}
+
+.navbar .navbar-toggler {
+  top: 0.25rem;
+  right: 1rem;
+}
+
+.btn-logout {
+  border: 0px;
+  outline: none;
+  background-color: transparent;
+}
+
+li > a:hover {
+  color: var(--primary-color) !important;
+}
+
+li > a:focus {
+  color: var(--primary-color) !important;
+}
+
+
+
+.link-active{
+  color: var(--primary-color) !important;
+}
+
+//snackbar
+.snackbar {
+  color: white;
+  background-color: green;
+  padding: 12px;
+  height: 50px;
+  position: fixed;
+  bottom: -64px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  visibility: hidden;
+  text-align: center;
+}
+
+.snackbar-error {
+  color: white;
+  background-color: red;
+  padding: 12px;
+  height: 50px;
+  position: fixed;
+  bottom: -64px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  visibility: hidden;
+  text-align: center;
+}
+
+.show {
+  visibility: visible;
+  animation: slideUpDown 5s ease;
+}
+
+@keyframes slideUpDown {
+  5%, 80% {
+    bottom: 0px
+  }
+}

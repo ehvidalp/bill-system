@@ -1,0 +1,49 @@
+<div class="pt-3">
+  <div class="d-flex mb-4 flex-row align-items-center border-bottom">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+      <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+      <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+    </svg>
+    <h3 class="ml-2 mt-1 title-font">Facturas</h3>
+  </div>
+  <a routerLink="new" class="mt-5 ml-4 btn btn-warning text-white rounded-pill px-5">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-circle-fill mr-2" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+    </svg>
+    Agregar
+  </a>
+  <div class="mt-5 px-4 table-responsive">
+    <ejs-grid [dataSource]="dataBills" [locale]='locale' [allowSorting]="true" [allowPaging]="true"
+              [allowResizing]="true" [pageSettings]="pageSettings" [toolbar]="toolbarOptions">
+      <e-columns>
+        <e-column field="nit" headerText="NIT"></e-column>
+        <e-column field="tradename" headerText="NOMBRE COMERCIAL"></e-column>
+        <e-column field="date" headerText="FECHA DE EMISIÓN">
+          <ng-template #template let-data>
+            {{data.date | date: 'dd/MM/yyyy'}}
+          </ng-template>
+        </e-column>
+        <e-column headerText="TOTAL">
+          <ng-template #template let-data>
+            Q {{data.total}}
+          </ng-template>
+        </e-column>
+        <e-column>
+          <ng-template #template let-data>
+            <a [routerLink]="['edit', data.id]" class="btn btn-info px-3 py-0 pb-1 rounded-pill">
+              <small>Editar</small>
+            </a>
+            <swal #swal >
+            </swal>
+            <button
+              (click)="deleteUser(data?.id, data?.file)"
+              type="button"
+              class="btn btn-danger ml-3 px-2 py-0 pb-1 rounded-pill">
+              <small>Eliminar</small>
+            </button>
+          </ng-template>
+        </e-column>
+      </e-columns>
+  </ejs-grid>`
+  </div>
+</div>

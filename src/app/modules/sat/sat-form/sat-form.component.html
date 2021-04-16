@@ -1,0 +1,50 @@
+<div class="pt-3">
+  <div class="d-flex mb-4 flex-row align-items-center border-bottom">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-stickies" viewBox="0 0 16 16">
+      <path d="M1.5 0A1.5 1.5 0 0 0 0 1.5V13a1 1 0 0 0 1 1V1.5a.5.5 0 0 1 .5-.5H14a1 1 0 0 0-1-1H1.5z"/>
+      <path d="M3.5 2A1.5 1.5 0 0 0 2 3.5v11A1.5 1.5 0 0 0 3.5 16h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 16 9.586V3.5A1.5 1.5 0 0 0 14.5 2h-11zM3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5V9h-4.5A1.5 1.5 0 0 0 9 10.5V15H3.5a.5.5 0 0 1-.5-.5v-11zm7 11.293V10.5a.5.5 0 0 1 .5-.5h4.293L10 14.793z"/>
+  </svg>
+    <h3 class="ml-2 title-font">{{titleComponent}}</h3>
+  </div>
+
+  <form [formGroup]="satForm!" (ngSubmit)="onSubmit()" class="row ml-4">
+    <div class="form-input col-sm-12 col-md-6 mt-2">
+      <label class="form-label">Año</label>
+      <input formControlName="date" type="month" class="form-control rounded-pill" [class.is-invalid]="f!.date.invalid && f!.date.touched">
+      <div class="invalid-feedback text-left pl-2">
+        <span  *ngIf="f!.date.errors?.required" >Campo requerido</span>
+      </div>
+    </div>
+    <div class="form-input col-sm-12 col-md-6 mt-2">
+      <label class="form-label">Número de formulario</label>
+      <input formControlName="formNumber" type="number" autocomplete="off" placeholder="Ingrese el número de formulario" class="form-control rounded-pill" [class.is-invalid]="f!.formNumber.invalid && f!.formNumber.touched">
+      <div class="invalid-feedback text-left pl-2">
+        <span  *ngIf="f!.formNumber.errors?.required" >Campo requerido</span>
+      </div>
+    </div>
+    <div class="form-input col-sm-12 col-md-6 mt-2">
+      <label class="form-label">Número de acceso</label>
+      <input formControlName="accessNumber" type="number" autocomplete="off" placeholder="Ingrese el número de acceso" class="form-control rounded-pill" [class.is-invalid]="f!.accessNumber.invalid && f!.accessNumber.touched">
+      <div class="invalid-feedback text-left pl-2">
+        <span  *ngIf="f!.accessNumber.errors?.required" >Campo requerido</span>
+      </div>
+    </div>
+    <div *ngIf="isIva"  class="form-input col-sm-12 col-md-6 mt-2">
+      <label class="form-label">Remanente</label>
+      <input formControlName="remainder" type="number" autocomplete="off" placeholder="Ingrese el remanente para el siguiente mes" class="form-control rounded-pill">
+    </div>
+    <div class="form-input col-sm-12 col-md-6 mt-2">
+      <label class="form-label">Creado por</label>
+      <input formControlName="createdBy" type="text" readonly class="form-control rounded-pill">
+    </div>
+    <div class="mt-3 d-flex flex-lg-row flex-md-row flex-column flex-sm-column w-100 justify-content-lg-center justify-content-md-between">
+      <button class="btn btn-success btn-custom mt-1 mt-sm-2 ml-lg-4 ml-sm-0 rounded-pill font-weight-bold order-lg-2 order-sm-1" type="submit">
+        <span class="spinner-grow text-light" *ngIf="loading" ></span>
+        <span *ngIf="!loading" >Guardar</span>
+      </button>
+      <button routerLink="{{isIva? '/sat/iva': 'sat/isr'}}" class="btn btn-danger btn-custom mt-1 mt-sm-2 rounded-pill font-weight-bold order-lg-1 order-sm-2" type="button">Cancelar</button>
+    </div>
+
+  </form>
+</div>
+
